@@ -76,8 +76,7 @@ def knapsack_with_example_solution(W: int, wt: list, val: list):
             "Both the weights and values vectors must be either lists or tuples"
         )
 
-    num_items = len(wt)
-    if num_items != len(val):
+    if (num_items := len(wt)) != len(val):
         raise ValueError(
             "The number of weights must be the "
             "same as the number of values.\nBut "
