@@ -7,8 +7,8 @@ python avl_tree.py
 """
 
 import math
-import random
 from typing import Any, List, Optional
+import secrets
 
 
 class my_queue:
@@ -337,11 +337,11 @@ if __name__ == "__main__":
     _test()
     t = AVLtree()
     lst = list(range(10))
-    random.shuffle(lst)
+    secrets.SystemRandom().shuffle(lst)
     for i in lst:
         t.insert(i)
         print(str(t))
-    random.shuffle(lst)
+    secrets.SystemRandom().shuffle(lst)
     for i in lst:
         t.del_node(i)
         print(str(t))
