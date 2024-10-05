@@ -1,6 +1,5 @@
 from __future__ import annotations
-
-import random
+import secrets
 
 
 class Dice:
@@ -11,7 +10,7 @@ class Dice:
         self.sides = list(range(1, Dice.NUM_SIDES + 1))
 
     def roll(self):
-        return random.choice(self.sides)
+        return secrets.choice(self.sides)
 
     def _str_(self):
         return "Fair Dice"

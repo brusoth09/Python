@@ -1,9 +1,9 @@
 import os
-import random
 import sys
 
 from . import cryptomath_module as cryptoMath
 from . import rabin_miller as rabinMiller
+import secrets
 
 
 def main() -> None:
@@ -21,7 +21,7 @@ def generateKey(keySize: int) -> tuple[tuple[int, int], tuple[int, int]]:
 
     print("Generating e that is relatively prime to (p - 1) * (q - 1)...")
     while True:
-        e = random.randrange(2 ** (keySize - 1), 2 ** (keySize))
+        e = secrets.SystemRandom().randrange(2 ** (keySize - 1), 2 ** (keySize))
         if cryptoMath.gcd(e, (p - 1) * (q - 1)) == 1:
             break
 

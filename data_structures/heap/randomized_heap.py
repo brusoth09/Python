@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 from __future__ import annotations
-
-import random
 from typing import Generic, Iterable, List, Optional, TypeVar
+import secrets
 
 T = TypeVar("T")
 
@@ -38,7 +37,7 @@ class RandomizedHeapNode(Generic[T]):
         if root1.value > root2.value:
             root1, root2 = root2, root1
 
-        if random.choice([True, False]):
+        if secrets.choice([True, False]):
             root1.left, root1.right = root1.right, root1.left
 
         root1.left = RandomizedHeapNode.merge(root1.left, root2)

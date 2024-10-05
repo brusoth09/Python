@@ -1,9 +1,8 @@
 # flake8: noqa
 
 from __future__ import annotations
-
-from random import random
 from typing import Optional, Tuple
+import secrets
 
 
 class Node:
@@ -14,7 +13,7 @@ class Node:
 
     def __init__(self, value: Optional[int] = None):
         self.value = value
-        self.prior = random()
+        self.prior = secrets.SystemRandom().random()
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
 
