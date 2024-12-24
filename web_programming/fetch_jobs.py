@@ -4,15 +4,14 @@ Scraping jobs given job title and location from indeed website
 from __future__ import annotations
 
 from typing import Generator
-
-import requests
 from bs4 import BeautifulSoup
+from security import safe_requests
 
 url = "https://www.indeed.co.in/jobs?q=mobile+app+development&l="
 
 
 def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str], None, None]:
-    soup = BeautifulSoup(requests.get(url + location).content, "html.parser")
+    soup = BeautifulSoup(safe_requests.get(url + location).content, "html.parser")
     # This attribute finds out all the specifics listed in a job
     for job in soup.find_all("div", attrs={"data-tn-component": "organicJob"}):
         job_title = job.find("a", attrs={"data-tn-element": "jobTitle"}).text.strip()
