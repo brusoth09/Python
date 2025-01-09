@@ -14,10 +14,9 @@ goes to infinity).
 
 from __future__ import annotations
 
-import random
-
 from matplotlib import animation
 from matplotlib import pyplot as plt
+import secrets
 
 
 class Body:
@@ -309,15 +308,15 @@ def example_3() -> BodySystem:
 
     bodies = []
     for i in range(10):
-        velocity_x = random.uniform(-0.5, 0.5)
-        velocity_y = random.uniform(-0.5, 0.5)
+        velocity_x = secrets.SystemRandom().uniform(-0.5, 0.5)
+        velocity_y = secrets.SystemRandom().uniform(-0.5, 0.5)
 
         # Bodies are created pairwise with opposite velocities so that the
         # total impulse remains zero
         bodies.append(
             Body(
-                random.uniform(-0.5, 0.5),
-                random.uniform(-0.5, 0.5),
+                secrets.SystemRandom().uniform(-0.5, 0.5),
+                secrets.SystemRandom().uniform(-0.5, 0.5),
                 velocity_x,
                 velocity_y,
                 size=0.05,
@@ -325,8 +324,8 @@ def example_3() -> BodySystem:
         )
         bodies.append(
             Body(
-                random.uniform(-0.5, 0.5),
-                random.uniform(-0.5, 0.5),
+                secrets.SystemRandom().uniform(-0.5, 0.5),
+                secrets.SystemRandom().uniform(-0.5, 0.5),
                 -velocity_x,
                 -velocity_y,
                 size=0.05,

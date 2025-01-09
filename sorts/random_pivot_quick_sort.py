@@ -1,7 +1,7 @@
 """
 Picks the random index as the pivot
 """
-import random
+import secrets
 
 
 def partition(A, left_index, right_index):
@@ -17,7 +17,7 @@ def partition(A, left_index, right_index):
 
 def quick_sort_random(A, left, right):
     if left < right:
-        pivot = random.randint(left, right - 1)
+        pivot = secrets.SystemRandom().randint(left, right - 1)
         A[pivot], A[left] = (
             A[left],
             A[pivot],

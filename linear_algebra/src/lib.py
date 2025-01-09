@@ -21,8 +21,8 @@ Overview:
 
 
 import math
-import random
 from typing import Collection, Optional, Union, overload
+import secrets
 
 
 class Vector:
@@ -208,8 +208,8 @@ def randomVector(N: int, a: int, b: int) -> Vector:
     output: returns a random vector of size N, with
             random integer components between 'a' and 'b'.
     """
-    random.seed(None)
-    ans = [random.randint(a, b) for _ in range(N)]
+    secrets.SystemRandom().seed(None)
+    ans = [secrets.SystemRandom().randint(a, b) for _ in range(N)]
     return Vector(ans)
 
 
@@ -391,8 +391,8 @@ def randomMatrix(W: int, H: int, a: int, b: int) -> Matrix:
     returns a random matrix WxH with integer components
     between 'a' and 'b'
     """
-    random.seed(None)
+    secrets.SystemRandom().seed(None)
     matrix: list[list[float]] = [
-        [random.randint(a, b) for _ in range(W)] for _ in range(H)
+        [secrets.SystemRandom().randint(a, b) for _ in range(W)] for _ in range(H)
     ]
     return Matrix(matrix, W, H)

@@ -6,8 +6,7 @@ Author: D4rkia
 """
 
 from __future__ import annotations
-
-import random
+import secrets
 
 # Maximum size of the population.  bigger could be faster but is more memory expensive
 N_POPULATION = 200
@@ -18,7 +17,7 @@ N_SELECTED = 50
 # guarantees that all genes will be used during evolution
 MUTATION_PROBABILITY = 0.4
 # just a seed to improve randomness required by the algorithm
-random.seed(random.randint(0, 1000))
+secrets.SystemRandom().seed(secrets.SystemRandom().randint(0, 1000))
 
 
 def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, str]:
@@ -59,7 +58,7 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
     # Generate random starting population
     population = []
     for _ in range(N_POPULATION):
-        population.append("".join([random.choice(genes) for i in range(len(target))]))
+        population.append("".join([secrets.choice(genes) for i in range(len(target))]))
 
     # Just some logs to know what the algorithms is doing
     generation, total_population = 0, 0
@@ -129,7 +128,7 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
             child_n = int(parent_1[1] * 100) + 1
             child_n = 10 if child_n >= 10 else child_n
             for _ in range(child_n):
-                parent_2 = population_score[random.randint(0, N_SELECTED)][0]
+                parent_2 = population_score[secrets.SystemRandom().randint(0, N_SELECTED)][0]
                 child_1, child_2 = crossover(parent_1[0], parent_2)
                 # Append new string to the population list
                 pop.append(mutate(child_1))
@@ -138,7 +137,7 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
 
         def crossover(parent_1: str, parent_2: str) -> tuple[str, str]:
             """Slice and combine two string in a random point"""
-            random_slice = random.randint(0, len(parent_1) - 1)
+            random_slice = secrets.SystemRandom().randint(0, len(parent_1) - 1)
             child_1 = parent_1[:random_slice] + parent_2[random_slice:]
             child_2 = parent_2[:random_slice] + parent_1[random_slice:]
             return (child_1, child_2)
@@ -146,8 +145,8 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
         def mutate(child: str) -> str:
             """Mutate a random gene of a child with another one from the list"""
             child_list = list(child)
-            if random.uniform(0, 1) < MUTATION_PROBABILITY:
-                child_list[random.randint(0, len(child)) - 1] = random.choice(genes)
+            if secrets.SystemRandom().uniform(0, 1) < MUTATION_PROBABILITY:
+                child_list[secrets.SystemRandom().randint(0, len(child)) - 1] = secrets.choice(genes)
             return "".join(child_list)
 
         # This is Selection
