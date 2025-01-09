@@ -10,7 +10,7 @@ large number can take minutes to factor, therefore are not included in doctest.
 from __future__ import annotations
 
 import math
-import random
+import secrets
 
 
 def rsafactor(d: int, e: int, N: int) -> list[int]:
@@ -35,7 +35,7 @@ def rsafactor(d: int, e: int, N: int) -> list[int]:
     p = 0
     q = 0
     while p == 0:
-        g = random.randint(2, N - 1)
+        g = secrets.SystemRandom().randint(2, N - 1)
         t = k
         while True:
             if t % 2 == 0:

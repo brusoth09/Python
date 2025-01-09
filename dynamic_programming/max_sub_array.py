@@ -2,6 +2,7 @@
 author : Mayank Kumar Jha (mk9440)
 """
 from __future__ import annotations
+import secrets
 
 
 def find_max_sub_array(A, low, high):
@@ -73,14 +74,13 @@ if __name__ == "__main__":
     A random simulation of this algorithm.
     """
     import time
-    from random import randint
 
     from matplotlib import pyplot as plt
 
     inputs = [10, 100, 1000, 10000, 50000, 100000, 200000, 300000, 400000, 500000]
     tim = []
     for i in inputs:
-        li = [randint(1, i) for j in range(i)]
+        li = [secrets.SystemRandom().randint(1, i) for j in range(i)]
         strt = time.time()
         (find_max_sub_array(li, 0, len(li) - 1))
         end = time.time()

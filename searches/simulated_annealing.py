@@ -1,8 +1,8 @@
 # https://en.wikipedia.org/wiki/Simulated_annealing
 import math
-import random
 
 from .hill_climbing import SearchProblem
+import secrets
 
 
 def simulated_annealing(
@@ -53,7 +53,7 @@ def simulated_annealing(
         while (
             next_state is None and neighbors
         ):  # till we do not find a neighbor that we can move to
-            index = random.randint(0, len(neighbors) - 1)  # picking a random neighbor
+            index = secrets.SystemRandom().randint(0, len(neighbors) - 1)  # picking a random neighbor
             picked_neighbor = neighbors.pop(index)
             change = picked_neighbor.score() - current_score
 
@@ -73,7 +73,7 @@ def simulated_annealing(
                 probability = (math.e) ** (
                     change / current_temp
                 )  # probability generation function
-                if random.random() < probability:  # random number within probability
+                if secrets.SystemRandom().random() < probability:  # random number within probability
                     next_state = picked_neighbor
         current_temp = current_temp - (current_temp * rate_of_decrease)
 

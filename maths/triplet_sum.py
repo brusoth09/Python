@@ -6,13 +6,13 @@ the target.
 from __future__ import annotations
 
 from itertools import permutations
-from random import randint
 from timeit import repeat
+import secrets
 
 
 def make_dataset() -> tuple[list[int], int]:
-    arr = [randint(-1000, 1000) for i in range(10)]
-    r = randint(-5000, 5000)
+    arr = [secrets.SystemRandom().randint(-1000, 1000) for i in range(10)]
+    r = secrets.SystemRandom().randint(-5000, 5000)
     return (arr, r)
 
 

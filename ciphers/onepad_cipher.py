@@ -1,4 +1,4 @@
-import random
+import secrets
 
 
 class Onepad:
@@ -9,7 +9,7 @@ class Onepad:
         key = []
         cipher = []
         for i in plain:
-            k = random.randint(1, 300)
+            k = secrets.SystemRandom().randint(1, 300)
             c = (i + k) * k
             cipher.append(c)
             key.append(k)

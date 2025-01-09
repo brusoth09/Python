@@ -1,10 +1,10 @@
 import os
 from itertools import chain
-from random import randrange, shuffle
 
 import pytest
 
 from .sol1 import PokerHand
+import secrets
 
 SORTED_HANDS = (
     "4S 3H 2C 7S 5H",
@@ -137,7 +137,7 @@ TEST_TYPES = (
 
 
 def generate_random_hand():
-    play, oppo = randrange(len(SORTED_HANDS)), randrange(len(SORTED_HANDS))
+    play, oppo = secrets.SystemRandom().randrange(len(SORTED_HANDS)), secrets.SystemRandom().randrange(len(SORTED_HANDS))
     expected = ["Loss", "Tie", "Win"][(play >= oppo) + (play > oppo)]
     hand, other = SORTED_HANDS[play], SORTED_HANDS[oppo]
     return hand, other, expected
@@ -187,7 +187,7 @@ def test_compare_random(hand, other, expected):
 def test_hand_sorted():
     POKER_HANDS = [PokerHand(hand) for hand in SORTED_HANDS]
     list_copy = POKER_HANDS.copy()
-    shuffle(list_copy)
+    secrets.SystemRandom().shuffle(list_copy)
     user_sorted = chain(sorted(list_copy))
     for index, hand in enumerate(user_sorted):
         assert hand == POKER_HANDS[index]

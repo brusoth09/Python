@@ -1,4 +1,5 @@
 """example of simple chaos machine"""
+import secrets
 
 # Chaos Machine (K, t, m)
 K = [0.33, 0.44, 0.55, 0.44, 0.33]
@@ -84,10 +85,7 @@ if __name__ == "__main__":
     # Initialization
     reset()
 
-    # Pushing Data (Input)
-    import random
-
-    message = random.sample(range(0xFFFFFFFF), 100)
+    message = secrets.SystemRandom().sample(range(0xFFFFFFFF), 100)
     for chunk in message:
         push(chunk)
 

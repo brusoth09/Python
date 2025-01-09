@@ -4,7 +4,7 @@ calculating the value that would appear in the index of a list if it would be
 sorted, even if it is not already sorted
 https://en.wikipedia.org/wiki/Quickselect
 """
-import random
+import secrets
 
 
 def _partition(data: list, pivot) -> tuple:
@@ -44,7 +44,7 @@ def quick_select(items: list, index: int):
     if index >= len(items) or index < 0:
         return None
 
-    pivot = items[random.randint(0, len(items) - 1)]
+    pivot = items[secrets.SystemRandom().randint(0, len(items) - 1)]
     count = 0
     smaller, equal, larger = _partition(items, pivot)
     count = len(equal)

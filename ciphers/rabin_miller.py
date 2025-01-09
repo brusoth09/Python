@@ -1,6 +1,6 @@
 # Primality Testing with the Rabin-Miller Algorithm
 
-import random
+import secrets
 
 
 def rabinMiller(num: int) -> bool:
@@ -12,7 +12,7 @@ def rabinMiller(num: int) -> bool:
         t += 1
 
     for trials in range(5):
-        a = random.randrange(2, num - 1)
+        a = secrets.SystemRandom().randrange(2, num - 1)
         v = pow(a, s, num)
         if v != 1:
             i = 0
@@ -212,7 +212,7 @@ def isPrime(num: int) -> bool:
 
 def generateLargePrime(keysize: int = 1024) -> int:
     while True:
-        num = random.randrange(2 ** (keysize - 1), 2 ** (keysize))
+        num = secrets.SystemRandom().randrange(2 ** (keysize - 1), 2 ** (keysize))
         if isPrime(num):
             return num
 

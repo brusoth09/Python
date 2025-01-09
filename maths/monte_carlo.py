@@ -2,9 +2,9 @@
 @author: MatteoRaso
 """
 from math import pi, sqrt
-from random import uniform
 from statistics import mean
 from typing import Callable
+import secrets
 
 
 def pi_estimator(iterations: int):
@@ -27,7 +27,7 @@ def pi_estimator(iterations: int):
 
     # The proportion of guesses that landed in the circle
     proportion = mean(
-        int(is_in_circle(uniform(-1.0, 1.0), uniform(-1.0, 1.0)))
+        int(is_in_circle(secrets.SystemRandom().uniform(-1.0, 1.0), secrets.SystemRandom().uniform(-1.0, 1.0)))
         for _ in range(iterations)
     )
     # The ratio of the area for circle to square is pi/4.
@@ -62,7 +62,7 @@ def area_under_curve_estimator(
     """
 
     return mean(
-        function_to_integrate(uniform(min_value, max_value)) for _ in range(iterations)
+        function_to_integrate(secrets.SystemRandom().uniform(min_value, max_value)) for _ in range(iterations)
     ) * (max_value - min_value)
 
 

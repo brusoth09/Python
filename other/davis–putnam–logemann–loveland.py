@@ -8,9 +8,8 @@ conjunctive normal form, i.e, for solving the Conjunctive Normal Form SATisfiabi
 
 For more information about the algorithm: https://en.wikipedia.org/wiki/DPLL_algorithm
 """
-
-import random
 from typing import Dict, List
+import secrets
 
 
 class Clause:
@@ -118,13 +117,13 @@ def generate_clause() -> Clause:
     All literals have the name Ax, where x is an integer from 1 to 5.
     """
     literals = []
-    no_of_literals = random.randint(1, 5)
+    no_of_literals = secrets.SystemRandom().randint(1, 5)
     base_var = "A"
     i = 0
     while i < no_of_literals:
-        var_no = random.randint(1, 5)
+        var_no = secrets.SystemRandom().randint(1, 5)
         var_name = base_var + str(var_no)
-        var_complement = random.randint(0, 1)
+        var_complement = secrets.SystemRandom().randint(0, 1)
         if var_complement == 1:
             var_name += "'"
         if var_name in literals:
@@ -140,7 +139,7 @@ def generate_formula() -> Formula:
     Randomly generate a formula.
     """
     clauses = set()
-    no_of_clauses = random.randint(1, 10)
+    no_of_clauses = secrets.SystemRandom().randint(1, 10)
     while len(clauses) < no_of_clauses:
         clauses.add(generate_clause())
     return Formula(set(clauses))

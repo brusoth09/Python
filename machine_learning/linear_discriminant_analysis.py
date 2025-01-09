@@ -44,8 +44,8 @@
 """
 from math import log
 from os import name, system
-from random import gauss, seed
 from typing import Callable, TypeVar
+import secrets
 
 
 # Make a training dataset drawn from a gaussian distribution
@@ -65,8 +65,8 @@ def gaussian_distribution(mean: float, std_dev: float, instance_count: int) -> l
        5.005005283626573, 4.935258239627312, 3.494170998739258, 5.537997178661033,
         5.320711100998849, 7.3891120432406865, 5.202969177309964, 4.855297691835079]
     """
-    seed(1)
-    return [gauss(mean, std_dev) for _ in range(instance_count)]
+    secrets.SystemRandom().seed(1)
+    return [secrets.SystemRandom().gauss(mean, std_dev) for _ in range(instance_count)]
 
 
 # Make corresponding Y flags to detecting classes

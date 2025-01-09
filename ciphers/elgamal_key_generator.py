@@ -1,9 +1,9 @@
 import os
-import random
 import sys
 
 from . import cryptomath_module as cryptomath
 from . import rabin_miller
+import secrets
 
 min_primitive_root = 3
 
@@ -16,7 +16,7 @@ min_primitive_root = 3
 def primitive_root(p_val: int) -> int:
     print("Generating primitive root of p")
     while True:
-        g = random.randrange(3, p_val)
+        g = secrets.SystemRandom().randrange(3, p_val)
         if pow(g, 2, p_val) == 1:
             continue
         if pow(g, p_val, p_val) == 1:
@@ -28,7 +28,7 @@ def generate_key(key_size: int) -> tuple[tuple[int, int, int, int], tuple[int, i
     print("Generating prime p...")
     p = rabin_miller.generateLargePrime(key_size)  # select large prime number.
     e_1 = primitive_root(p)  # one primitive root on modulo p.
-    d = random.randrange(3, p)  # private_key -> have to be greater than 2 for safety.
+    d = secrets.SystemRandom().randrange(3, p)  # private_key -> have to be greater than 2 for safety.
     e_2 = cryptomath.find_mod_inverse(pow(e_1, d, p), p)
 
     public_key = (key_size, e_1, e_2, p)

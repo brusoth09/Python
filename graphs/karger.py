@@ -3,8 +3,7 @@ An implementation of Karger's Algorithm for partitioning a graph.
 """
 
 from __future__ import annotations
-
-import random
+import secrets
 
 # Adjacency list representation of this graph:
 # https://en.wikipedia.org/wiki/File:Single_run_of_Karger%E2%80%99s_Mincut_algorithm.svg
@@ -49,8 +48,8 @@ def partition_graph(graph: dict[str, list[str]]) -> set[tuple[str, str]]:
     while len(graph_copy) > 2:
 
         # Choose a random edge.
-        u = random.choice(list(graph_copy.keys()))
-        v = random.choice(graph_copy[u])
+        u = secrets.choice(list(graph_copy.keys()))
+        v = secrets.choice(graph_copy[u])
 
         # Contract edge (u, v) to new node uv
         uv = u + v
