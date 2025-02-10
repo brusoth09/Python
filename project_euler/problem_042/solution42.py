@@ -31,7 +31,7 @@ def solution():
 
     words = ""
     with open(wordsFilePath) as f:
-        words = f.readline()
+        words = f.readline(5_000_000)
 
     words = list(map(lambda word: word.strip('"'), words.strip("\r\n").split(",")))
     words = list(
