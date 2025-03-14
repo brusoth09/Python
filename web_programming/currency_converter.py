@@ -178,7 +178,7 @@ def convert_currency(
     """https://www.amdoren.com/currency-api/"""
     params = locals()
     params["from"] = params.pop("from_")
-    res = requests.get(URL_BASE, params=params).json()
+    res = requests.get(URL_BASE, params=params, timeout=60).json()
     return str(res["amount"]) if res["error"] == 0 else res["error_message"]
 
 

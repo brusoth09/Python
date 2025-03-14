@@ -6,17 +6,17 @@ URL_BASE = "http://api.openweathermap.org/data/2.5/"
 
 def current_weather(q: str = "Chicago", appid: str = APPID) -> dict:
     """https://openweathermap.org/api"""
-    return requests.get(URL_BASE + "weather", params=locals()).json()
+    return requests.get(URL_BASE + "weather", params=locals(), timeout=60).json()
 
 
 def weather_forecast(q: str = "Kolkata, India", appid: str = APPID) -> dict:
     """https://openweathermap.org/forecast5"""
-    return requests.get(URL_BASE + "forecast", params=locals()).json()
+    return requests.get(URL_BASE + "forecast", params=locals(), timeout=60).json()
 
 
 def weather_onecall(lat: float = 55.68, lon: float = 12.57, appid: str = APPID) -> dict:
     """https://openweathermap.org/api/one-call-api"""
-    return requests.get(URL_BASE + "onecall", params=locals()).json()
+    return requests.get(URL_BASE + "onecall", params=locals(), timeout=60).json()
 
 
 if __name__ == "__main__":
