@@ -1,8 +1,7 @@
 import os
-
-import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
+from security import safe_requests
 
 headers = {"UserAgent": UserAgent().random}
 URL = "https://www.mywaifulist.moe/random"
@@ -12,7 +11,7 @@ def save_image(image_url: str, image_title: str) -> None:
     """
     Saves the image of anime character
     """
-    image = requests.get(image_url, headers=headers)
+    image = safe_requests.get(image_url, headers=headers)
     with open(image_title, "wb") as file:
         file.write(image.content)
 
@@ -21,7 +20,7 @@ def random_anime_character() -> tuple[str, str, str]:
     """
     Returns the Title, Description, and Image Title of a random anime character .
     """
-    soup = BeautifulSoup(requests.get(URL, headers=headers).text, "html.parser")
+    soup = BeautifulSoup(safe_requests.get(URL, headers=headers).text, "html.parser")
     title = soup.find("meta", attrs={"property": "og:title"}).attrs["content"]
     image_url = soup.find("meta", attrs={"property": "og:image"}).attrs["content"]
     description = soup.find("p", id="description").get_text()

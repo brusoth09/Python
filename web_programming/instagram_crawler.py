@@ -2,10 +2,9 @@
 from __future__ import annotations
 
 import json
-
-import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
+from security import safe_requests
 
 headers = {"UserAgent": UserAgent().random}
 
@@ -39,7 +38,7 @@ class InstagramUser:
         """
         Return a dict of user information
         """
-        html = requests.get(self.url, headers=headers).text
+        html = safe_requests.get(self.url, headers=headers).text
         scripts = BeautifulSoup(html, "html.parser").find_all("script")
         try:
             return extract_user_profile(scripts[4])

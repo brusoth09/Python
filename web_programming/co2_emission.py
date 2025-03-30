@@ -4,6 +4,7 @@ Get CO2 emission data from the UK CarbonIntensity API
 from datetime import date
 
 import requests
+from security import safe_requests
 
 BASE_URL = "https://api.carbonintensity.org.uk/intensity"
 
@@ -16,7 +17,7 @@ def fetch_last_half_hour() -> str:
 
 # Emissions in a specific date range
 def fetch_from_to(start, end) -> list:
-    return requests.get(f"{BASE_URL}/{start}/{end}").json()["data"]
+    return safe_requests.get(f"{BASE_URL}/{start}/{end}").json()["data"]
 
 
 if __name__ == "__main__":
