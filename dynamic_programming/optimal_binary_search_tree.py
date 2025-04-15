@@ -17,7 +17,7 @@
 # with low frequencies will be placed near the leaves of the tree thus
 # reducing search time in the most frequent instances.
 import sys
-from random import randint
+import secrets
 
 
 class Node:
@@ -136,7 +136,7 @@ def find_optimal_binary_search_tree(nodes):
 
 def main():
     # A sample binary search tree
-    nodes = [Node(i, randint(1, 50)) for i in range(10, 0, -1)]
+    nodes = [Node(i, secrets.SystemRandom().randint(1, 50)) for i in range(10, 0, -1)]
     find_optimal_binary_search_tree(nodes)
 
 
