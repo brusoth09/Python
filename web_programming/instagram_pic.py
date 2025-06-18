@@ -6,10 +6,10 @@ from bs4 import BeautifulSoup
 if __name__ == "__main__":
     url = input("Enter image url: ").strip()
     print(f"Downloading image from {url} ...")
-    soup = BeautifulSoup(requests.get(url).content, "html.parser")
+    soup = BeautifulSoup(requests.get(url, timeout=60).content, "html.parser")
     # The image URL is in the content field of the first meta tag with property og:image
     image_url = soup.find("meta", {"property": "og:image"})["content"]
-    image_data = requests.get(image_url).content
+    image_data = requests.get(image_url, timeout=60).content
     file_name = f"{datetime.now():%Y-%m-%d_%H:%M:%S}.jpg"
     with open(file_name, "wb") as fp:
         fp.write(image_data)

@@ -55,7 +55,7 @@ def login_using_recaptcha(request):
     client_key = request.POST.get("g-recaptcha-response")
 
     # post recaptcha response to Google's recaptcha api
-    response = requests.post(url, data={"secret": secret_key, "response": client_key})
+    response = requests.post(url, data={"secret": secret_key, "response": client_key}, timeout=60)
     # if the recaptcha api verified our keys
     if response.json().get("success", False):
         # authenticate the user

@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 def stock_price(symbol: str = "AAPL") -> str:
     url = f"https://in.finance.yahoo.com/quote/{symbol}?s={symbol}"
-    soup = BeautifulSoup(requests.get(url).text, "html.parser")
+    soup = BeautifulSoup(requests.get(url, timeout=60).text, "html.parser")
     class_ = "My(6px) Pos(r) smartphone_Mt(6px)"
     return soup.find("div", class_=class_).find("span").text
 
