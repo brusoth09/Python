@@ -1,10 +1,10 @@
-import requests
 from bs4 import BeautifulSoup
+from security import safe_requests
 
 
 def stock_price(symbol: str = "AAPL") -> str:
     url = f"https://in.finance.yahoo.com/quote/{symbol}?s={symbol}"
-    soup = BeautifulSoup(requests.get(url).text, "html.parser")
+    soup = BeautifulSoup(safe_requests.get(url).text, "html.parser")
     class_ = "My(6px) Pos(r) smartphone_Mt(6px)"
     return soup.find("div", class_=class_).find("span").text
 

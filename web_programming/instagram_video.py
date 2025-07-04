@@ -1,12 +1,11 @@
 from datetime import datetime
-
-import requests
+from security import safe_requests
 
 
 def download_video(url: str) -> bytes:
     base_url = "https://downloadgram.net/wp-json/wppress/video-downloader/video?url="
-    video_url = requests.get(base_url + url).json()[0]["urls"][0]["src"]
-    return requests.get(video_url).content
+    video_url = safe_requests.get(base_url + url).json()[0]["urls"][0]["src"]
+    return safe_requests.get(video_url).content
 
 
 if __name__ == "__main__":
