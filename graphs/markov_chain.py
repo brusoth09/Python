@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import Counter
-from random import random
+import secrets
 
 
 class MarkovChainGraphUndirectedUnweighted:
@@ -29,7 +29,7 @@ class MarkovChainGraphUndirectedUnweighted:
 
     def transition(self, node: str) -> str:
         current_probability = 0
-        random_value = random()
+        random_value = secrets.SystemRandom().random()
 
         for dest in self.connections[node]:
             current_probability += self.connections[node][dest]

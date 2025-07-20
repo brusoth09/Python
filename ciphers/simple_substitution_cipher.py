@@ -1,5 +1,5 @@
-import random
 import sys
+import secrets
 
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -70,7 +70,7 @@ def translateMessage(key: str, message: str, mode: str) -> str:
 
 def getRandomKey() -> str:
     key = list(LETTERS)
-    random.shuffle(key)
+    secrets.SystemRandom().shuffle(key)
     return "".join(key)
 
 

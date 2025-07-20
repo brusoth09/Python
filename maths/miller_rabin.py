@@ -1,6 +1,6 @@
-import random
 
 from .binary_exp_mod import bin_exp_mod
+import secrets
 
 
 # This is a probabilistic check to test primality, useful for big numbers!
@@ -28,7 +28,7 @@ def is_prime(n, prec=1000):
     # n - 1=d*(2**exp)
     count = 0
     while count < prec:
-        a = random.randint(2, n - 1)
+        a = secrets.SystemRandom().randint(2, n - 1)
         b = bin_exp_mod(a, d, n)
         if b != 1:
             flag = True

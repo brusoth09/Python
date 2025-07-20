@@ -1,7 +1,7 @@
-import random
 import sys
 
 from . import cryptomath_module as cryptomath
+import secrets
 
 SYMBOLS = (
     r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`"""
@@ -72,8 +72,8 @@ def decrypt_message(key: int, message: str) -> str:
 
 def get_random_key() -> int:
     while True:
-        keyA = random.randint(2, len(SYMBOLS))
-        keyB = random.randint(2, len(SYMBOLS))
+        keyA = secrets.SystemRandom().randint(2, len(SYMBOLS))
+        keyB = secrets.SystemRandom().randint(2, len(SYMBOLS))
         if cryptomath.gcd(keyA, len(SYMBOLS)) == 1 and keyB % len(SYMBOLS) != 0:
             return keyA * len(SYMBOLS) + keyB
 
